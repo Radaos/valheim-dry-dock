@@ -1,0 +1,9 @@
+{
+    "name": "ValheimDryDock",
+    "version_number": "1.1.0",
+    "website_url": "https://github.com",
+    "description": "Client-side tool to dry-dock your ships, use Y, H. Raises Longships and Drakkars above tides and generates a vanilla timber cradle. Server-safe!",
+    "dependencies": [
+        "denikson-BepInExPack_Valheim-5.4.2202"
+    ]
+}

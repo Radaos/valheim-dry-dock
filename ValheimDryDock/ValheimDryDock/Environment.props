@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <ValheimManaged>C:\Program Files (x86)\Steam\steamapps\common\Valheim\valheim_Data\Managed</ValheimManaged>
+    <BepInCore>C:\Program Files (x86)\Steam\steamapps\common\Valheim\ValheimMods\ModManager\Valheim\profiles\Confucious\BepInEx\core</BepInCore>
+    <BepInPlugins>C:\Program Files (x86)\Steam\steamapps\common\Valheim\ValheimMods\ModManager\Valheim\profiles\Confucious\BepInEx\plugins</BepInPlugins>
+  </PropertyGroup>
+</Project>

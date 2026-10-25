@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <AssemblyName>ValheimDryDock</AssemblyName>
+    <Product>ValheimDryDock</Product>
+    <Version>1.1.0</Version>
+    <LangVersion>7.3</LangVersion>
+    <Nullable>disable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <!-- Pull in your local personal path configurations safely -->
+  <Import Project="Environment.props" Condition="Exists('Environment.props')" />
+
+  <ItemGroup>
+    <!-- Core Valheim Split Assembly Linkages -->
+    <Reference Include="Assembly-CSharp"><HintPath>$(ValheimManaged)\Assembly-CSharp.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="assembly_valheim"><HintPath>$(ValheimManaged)\assembly_valheim.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="Splatform"><HintPath>$(ValheimManaged)\Splatform.dll</HintPath><Private>False</Private></Reference>
+
+    <!-- Unity Subsystem Engine Modules -->
+    <Reference Include="UnityEngine"><HintPath>$(ValheimManaged)\UnityEngine.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(ValheimManaged)\UnityEngine.CoreModule.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="UnityEngine.PhysicsModule"><HintPath>$(ValheimManaged)\UnityEngine.PhysicsModule.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="UnityEngine.InputLegacyModule"><HintPath>$(ValheimManaged)\UnityEngine.InputLegacyModule.dll</HintPath><Private>False</Private></Reference>
+
+    <!-- Mod Loader System Core Modules -->
+    <Reference Include="BepInEx"><HintPath>$(BepInCore)\BepInEx.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="0Harmony"><HintPath>$(BepInCore)\0Harmony.dll</HintPath><Private>False</Private></Reference>
+  </ItemGroup>
+
+  <!-- POST-BUILD AUTOMATED TARGET DIRECTORY COPY PIPELINE -->
+  <!-- Only runs on your local machine if BepInPlugins folder path is successfully declared -->
+  <Target Name="CopyToPlugins" AfterTargets="Build" Condition="'$(Configuration)' == 'Release' And '$(BepInPlugins)' != ''">
+    <Message Text="Executing automated transfer script routing straight to profile..." Importance="high" />
+    <Copy SourceFiles="$(TargetDir)$(TargetName).dll" DestinationFolder="$(BepInPlugins)" />
+    <Message Text="Success! Mod transferred to: $(BepInPlugins)" Importance="high" />
+  </Target>
+
+</Project>
